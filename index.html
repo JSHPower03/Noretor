@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lotto 번호 추첨</title>
+    </head>
+    <body>
+        <h1 id="random-number">추첨 번호: </h1><br>
+        <button onclick="generateMultipleSets()">번호 뽑기</button>
+
+        <script>
+            function generateRandomNumber() {
+                let numbers = [];
+
+                while (numbers.length < 6) {
+                    let randomNumber = Math.floor(Math.random() * 45) + 1;
+                    if (!numbers.includes(randomNumber)) {
+                        numbers.push(randomNumber);
+                    }
+                }
+                numbers.sort(function(a,b){
+                    return a - b;
+                })
+
+                return numbers.join("  ");
+            }
+            
+            function generateMultipleSets() {
+                let allSets = [];
+
+                for (let i = 0; i < 5; i++) {
+                    allSets.push(generateRandomNumber());
+                }
+                document.getElementById("random-number").innerText = "추첨 번호: \n" + allSets.join("\n");
+            }
+                
+        </script>
+    </body>
+</html>
